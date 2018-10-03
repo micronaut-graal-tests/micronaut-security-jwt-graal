@@ -1,0 +1,7 @@
+*.class
+build
+.gradle
+.idea
+.DS_Store
+*.iml
+mn-security
