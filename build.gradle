@@ -53,6 +53,11 @@ dependencies {
     compileOnly 'com.oracle.substratevm:svm:GraalVM-1.0.0-rc6'
     runtimeOnly 'io.micronaut:graal'
 
+    // Added these dependencies to be able to generate Graal image
+    compile 'javax.money:money-api:1.0.3'
+    compile 'joda-time:joda-time:2.10'
+
+
     //tag::spock[]
     testCompile "org.codehaus.groovy:groovy-all:2.4.15"
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
