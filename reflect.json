@@ -1,0 +1,26 @@
+[{
+  "name": "io.netty.channel.socket.nio.NioServerSocketChannel",
+  "allDeclaredConstructors": true
+}, {
+  "name": "io.netty.channel.socket.nio.NioSocketChannel",
+  "allDeclaredConstructors": true
+}, {
+  "name": "java.lang.FunctionalInterface",
+  "allDeclaredConstructors": true
+}, {
+  "name": "javax.annotation.Nullable"
+}, {
+  "name": "javax.annotation.PreDestroy"
+}, {
+  "name": "javax.inject.Inject"
+}, {
+  "name": "javax.inject.Named"
+}, {
+  "name": "javax.inject.Singleton"
+}, {
+  "name": "sun.security.ssl.SSLContextImpl$TLSContext",
+  "allDeclaredConstructors": true
+}, {
+  "name": "[Lio.micronaut.http.MediaType;",
+  "allDeclaredConstructors": true
+}]
