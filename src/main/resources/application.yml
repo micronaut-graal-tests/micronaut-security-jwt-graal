@@ -15,5 +15,4 @@ micronaut:
               secret: pleaseChangeThisSecretForANewOne # <6>
 
 jackson:
-#    module-scan: false
     bean-introspection-module: true
