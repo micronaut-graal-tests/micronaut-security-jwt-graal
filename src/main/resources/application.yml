@@ -13,3 +13,7 @@ micronaut:
           secret:
             generator: # <5>
               secret: pleaseChangeThisSecretForANewOne # <6>
+
+jackson:
+#    module-scan: false
+    bean-introspection-module: true
