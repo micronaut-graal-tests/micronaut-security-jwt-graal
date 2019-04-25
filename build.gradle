@@ -41,7 +41,9 @@ dependencies {
     runtime 'io.micronaut:micronaut-core'
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 
-    compile "io.micronaut:micronaut-security-jwt"
+    compile "io.micronaut:micronaut-security-jwt", {
+        exclude group:'io.micronaut.configuration', module:'micronaut-hibernate-validator'
+    }
 
     compileOnly 'com.oracle.substratevm:svm'
     runtime 'io.micronaut:micronaut-core'
