@@ -1,4 +1,4 @@
-package example.micronaut.controllers;
+package example.micronaut;
 
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -6,12 +6,12 @@ import io.micronaut.security.annotation.Secured;
 
 import java.security.Principal;
 
-@Secured("isAuthenticated()") // <1>
-@Controller("/")  // <2>
+@Secured("isAuthenticated()")
+@Controller("/")
 public class HomeController {
 
-    @Get("/") // <3>
-    String index(Principal principal) {  // <4>
+    @Get("/")
+    String index(Principal principal) {
         return principal.getName();
     }
 }

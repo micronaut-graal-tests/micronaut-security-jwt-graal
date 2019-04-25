@@ -1,4 +1,4 @@
-package example.micronaut.services;
+package example.micronaut;
 
 import io.micronaut.security.authentication.AuthenticationFailed;
 import io.micronaut.security.authentication.AuthenticationProvider;
@@ -11,8 +11,8 @@ import org.reactivestreams.Publisher;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 
-@Singleton // <1>
-public class AuthenticationProviderUserPassword implements AuthenticationProvider { // <2>
+@Singleton
+public class AuthenticationProviderUserPassword implements AuthenticationProvider {
 
     @Override
     public Publisher<AuthenticationResponse> authenticate(AuthenticationRequest authenticationRequest) {
