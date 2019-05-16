@@ -13,5 +13,5 @@ echo $ACCESS_TOKEN
 curl -H "Authorization:Bearer ${ACCESS_TOKEN}" localhost:8080/
 ```
 
-**WARNING:** This application is based in Micronaut 1.1.1.BUILD-SNAPSHOT which doesn't include the new Bean Validation
+**WARNING:** This application is based in Micronaut 1.1.2.BUILD-SNAPSHOT which doesn't include the new Bean Validation
 API introduced in Micronaut 1.2.0.BUILD-SNAPSHOT. At this moment login is working but validation of the parameters is not. 
