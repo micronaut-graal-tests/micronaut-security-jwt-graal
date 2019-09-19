@@ -1,10 +1,8 @@
 plugins {
-    id "io.spring.dependency-management" version "1.0.6.RELEASE"
-    id "com.github.johnrengelman.shadow" version "4.0.2"
+    id "com.github.johnrengelman.shadow" version "5.0.0"
     id "application"
-    id "java"
-    id "net.ltgt.apt-eclipse" version "0.20"
-    id "net.ltgt.apt-idea" version "0.20"
+    id "groovy"
+    id "net.ltgt.apt-eclipse" version "0.21"
 }
 
 version "0.1"
@@ -17,39 +15,50 @@ repositories {
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "io.micronaut:micronaut-bom:$micronautVersion"
-    }
-}
-
 configurations {
     // for dependencies that are needed for development only
     developmentOnly
 }
 
 dependencies {
+    annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+    annotationProcessor "io.micronaut:micronaut-graal"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
-    annotationProcessor "io.micronaut:micronaut-graal"
-    compile "io.micronaut:micronaut-http-client"
-    compile "io.micronaut:micronaut-http-server-netty"
-    compile "io.micronaut:micronaut-inject"
-    compile "io.micronaut:micronaut-validation"
-    compile "io.micronaut:micronaut-runtime"
-    runtime "ch.qos.logback:logback-classic:1.2.3"
-    runtime 'io.micronaut:micronaut-core'
-    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 
-    compile "io.micronaut:micronaut-security-jwt", {
+    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation "io.micronaut:micronaut-http-client"
+    implementation "io.micronaut:micronaut-inject"
+    implementation "io.micronaut:micronaut-validation"
+    implementation "io.micronaut:micronaut-runtime"
+    implementation "io.micronaut:micronaut-http-server-netty"
+    implementation "io.micronaut:micronaut-security-jwt", {
         exclude group:'io.micronaut.configuration', module:'micronaut-hibernate-validator'
     }
 
-    compileOnly 'com.oracle.substratevm:svm'
-    runtime 'io.micronaut:micronaut-core'
+    compileOnly "com.oracle.substratevm:svm"
 
-    testCompile "org.codehaus.groovy:groovy-all:2.4.15"
-    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
+
+    testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+
+    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testImplementation "io.micronaut.test:micronaut-test-junit5"
+    testImplementation("org.spockframework:spock-core") {
+        exclude group: "org.codehaus.groovy", module: "groovy-all"
+    }
+    testImplementation "io.micronaut:micronaut-inject-groovy"
+    testImplementation "io.micronaut.test:micronaut-test-spock"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.5.0"
+}
+
+mainClassName = "example.micronaut.Application"
+// use JUnit 5 platform
+test {
+    useJUnitPlatform()
 }
 
 shadowJar {
@@ -58,11 +67,11 @@ shadowJar {
 
 run.classpath += configurations.developmentOnly
 test.classpath += configurations.developmentOnly
-run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1')
+run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
 
 mainClassName = "example.micronaut.Application"
 
-tasks.withType(JavaCompile){
+tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
     options.compilerArgs.add('-parameters')
 }
