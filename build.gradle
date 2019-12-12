@@ -36,7 +36,7 @@ dependencies {
         exclude group:'io.micronaut.configuration', module:'micronaut-hibernate-validator'
     }
 
-    compileOnly "com.oracle.substratevm:svm"
+    compileOnly "org.graalvm.nativeimage:svm"
 
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
