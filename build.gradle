@@ -21,12 +21,12 @@ configurations {
 }
 
 dependencies {
-    annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+    annotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-graal"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
 
-    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation "io.micronaut:micronaut-http-client"
     implementation "io.micronaut:micronaut-inject"
     implementation "io.micronaut:micronaut-validation"
@@ -36,14 +36,15 @@ dependencies {
         exclude group:'io.micronaut.configuration', module:'micronaut-hibernate-validator'
     }
 
+    compileOnly enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
     compileOnly "org.graalvm.nativeimage:svm"
 
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
-    testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+    testAnnotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 
-    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    testImplementation enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
     testImplementation "org.junit.jupiter:junit-jupiter-api"
     testImplementation "io.micronaut.test:micronaut-test-junit5"
     testImplementation("org.spockframework:spock-core") {
