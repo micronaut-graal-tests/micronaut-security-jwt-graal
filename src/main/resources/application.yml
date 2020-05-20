@@ -1,6 +1,5 @@
 micronaut:
   security:
-    enabled: true
     endpoints:
       login:
         enabled: true
@@ -8,11 +7,11 @@ micronaut:
         enabled: true
     token:
       jwt:
-        enabled: true
         signatures:
           secret:
             generator:
-              secret: pleaseChangeThisSecretForANewOne
-
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+    login-handler: bearer
+---
 jackson:
     bean-introspection-module: true
