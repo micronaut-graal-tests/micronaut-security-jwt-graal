@@ -9,12 +9,12 @@ import io.micronaut.security.rules.SecurityRule;
 
 import java.security.Principal;
 
-@Controller("/")
 @Secured(SecurityRule.IS_AUTHENTICATED)
+@Controller
 public class HomeController {
 
-    @Get("/")
     @Produces(MediaType.TEXT_PLAIN)
+    @Get
     String index(Principal principal) {
         return principal.getName();
     }
