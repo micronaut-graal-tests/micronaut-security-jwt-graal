@@ -4,6 +4,7 @@ import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
+import io.micronaut.http.MediaType
 import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.runtime.server.EmbeddedServer
@@ -31,7 +32,7 @@ class DeclarativeHttpClientWithJwtSpec extends Specification {
         noExceptionThrown()
 
         when: 'Accessing a secured URL without authenticating'
-        client.toBlocking().exchange(HttpRequest.GET('/', ))
+        client.toBlocking().exchange(HttpRequest.GET('/', ).accept(MediaType.TEXT_PLAIN))
 
         then: 'returns unauthorized'
         HttpClientResponseException e = thrown(HttpClientResponseException)

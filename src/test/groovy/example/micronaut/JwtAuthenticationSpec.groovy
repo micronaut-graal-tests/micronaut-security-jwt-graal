@@ -6,6 +6,7 @@ import io.micronaut.context.ApplicationContext
 import io.micronaut.http.HttpHeaders
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
+import io.micronaut.http.MediaType
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.security.authentication.UsernamePasswordCredentials
@@ -28,7 +29,7 @@ class JwtAuthenticationSpec extends Specification {
 
     def "Verify JWT authentication works"() {
         when: 'Accessing a secured URL without authenticating'
-        client.toBlocking().exchange(HttpRequest.GET('/', )) // <4>
+        client.toBlocking().exchange(HttpRequest.GET('/').accept(MediaType.TEXT_PLAIN)) // <4>
 
         then: 'returns unauthorized'
         HttpClientResponseException e = thrown(HttpClientResponseException)
@@ -49,7 +50,9 @@ class JwtAuthenticationSpec extends Specification {
 
         when:
         String accessToken = rsp.body().accessToken
-        HttpRequest requestWithAuthorization = HttpRequest.GET('/' ).header(HttpHeaders.AUTHORIZATION, "Bearer $accessToken") // <7>
+        HttpRequest requestWithAuthorization = HttpRequest.GET('/' )
+                .accept(MediaType.TEXT_PLAIN)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer $accessToken") // <7>
         HttpResponse<String> response = client.toBlocking().exchange(requestWithAuthorization, String)
 
         then:
