@@ -45,8 +45,6 @@ class JwtAuthenticationSpec extends Specification {
         rsp.body().username == 'sherlock'
         rsp.body().accessToken
         JWTParser.parse(rsp.body().accessToken) instanceof SignedJWT
-        rsp.body().refreshToken
-        JWTParser.parse(rsp.body().refreshToken) instanceof SignedJWT
 
         when:
         String accessToken = rsp.body().accessToken
