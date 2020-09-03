@@ -1,8 +1,0 @@
-*.class
-build
-.gradle
-.idea
-.DS_Store
-*.iml
-security-jwt-graal*
-out/
