@@ -42,5 +42,4 @@ java {
 
 nativeImage {
     imageName('security-jwt')
-    args = ['-H:+StaticExecutableWithDynamicLibC']
 }
