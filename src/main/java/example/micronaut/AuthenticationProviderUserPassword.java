@@ -1,5 +1,6 @@
 package example.micronaut;
 
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.security.authentication.AuthenticationFailed;
 import io.micronaut.security.authentication.AuthenticationProvider;
@@ -9,7 +10,6 @@ import io.micronaut.security.authentication.UserDetails;
 import io.reactivex.Flowable;
 import org.reactivestreams.Publisher;
 
-import javax.annotation.Nullable;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 
