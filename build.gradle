@@ -20,24 +20,6 @@ micronaut {
     }
 }
 
-configurations {
-    all {
-        resolutionStrategy {
-            eachDependency { DependencyResolveDetails details ->
-                // TODO: Remove this when Micronaut Reactor 2.0.0 is released
-                if (details.requested.group == 'io.micronaut.reactor') {
-                    details.useVersion '2.0.0-SNAPSHOT'
-                }
-
-                // TODO: Remove this when Micronaut Security 3.0.0 is released
-                if (details.requested.group == 'io.micronaut.security') {
-                    details.useVersion '3.0.0-SNAPSHOT'
-                }
-            }
-        }
-    }
-}
-
 dependencies {
     annotationProcessor("io.micronaut.security:micronaut-security-annotations")
 
