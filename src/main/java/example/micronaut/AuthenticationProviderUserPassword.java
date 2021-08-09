@@ -6,7 +6,6 @@ import io.micronaut.security.authentication.AuthenticationFailed;
 import io.micronaut.security.authentication.AuthenticationProvider;
 import io.micronaut.security.authentication.AuthenticationRequest;
 import io.micronaut.security.authentication.AuthenticationResponse;
-import io.micronaut.security.authentication.UserDetails;
 import jakarta.inject.Singleton;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
@@ -20,7 +19,7 @@ public class AuthenticationProviderUserPassword implements AuthenticationProvide
     public Publisher<AuthenticationResponse> authenticate(@Nullable HttpRequest<?> httpRequest, AuthenticationRequest<?, ?> authenticationRequest) {
         if (authenticationRequest.getIdentity().equals("sherlock") &&
                 authenticationRequest.getSecret().equals("password")) {
-            return Flux.just(new UserDetails((String) authenticationRequest.getIdentity(), new ArrayList<>()));
+            return Flux.just(AuthenticationResponse.success((String) authenticationRequest.getIdentity()));
         }
         return Flux.just(new AuthenticationFailed());
     }
