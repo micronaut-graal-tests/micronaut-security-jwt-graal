@@ -1,4 +1,4 @@
 #!/bin/bash
 
-./gradlew nativeImage
-cp build/native-image/security-jwt .
+./gradlew nativeCompile
+cp build/native/nativeCompile/security-jwt .
